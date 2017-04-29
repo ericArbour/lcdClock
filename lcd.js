@@ -22,23 +22,26 @@ function timeMaker (num) {
     line = [line.concat(' . ',  strings[Number(numString[j])][i]).join('')];
    } else if (j === 2) {
     line = [line.concat('   ',  strings[Number(numString[j])][i]).join('')];
+   } else if (j === 4 && (i === 1 || i === 2)) {
+    line = [line.concat(' . ',  strings[Number(numString[j])][i]).join('')];
+   } else if (j === 4) {
+    line = [line.concat('   ',  strings[Number(numString[j])][i]).join('')];
    } else {
     line = [line.concat(' ',  strings[Number(numString[j])][i]).join('')];
    }
   }
-  console.log(line);
   result += line + '\n';
  }
  return result;
 }
 
-console.log(timeMaker(65522));
 setInterval(function() {
  var time = new Date();
- console.log(time.getHours());
- console.log(time.getMinutes());
- console.log(time.getSeconds());
-}, 1000000);
+ var hours = time.getHours().toString().length < 2 ? "0" + time.getHours() : time.getHours().toString();
+ var minutes = time.getMinutes().toString().length < 2 ? "0" + time.getMinutes() : time.getMinutes().toString();
+ var seconds = time.getSeconds().toString().length < 2 ? "0" + time.getSeconds() : time.getSeconds().toString();
+ console.log(timeMaker(hours + minutes + seconds));
+}, 1000);
 
 function lcd (num) {
  var strings = [
